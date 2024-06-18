@@ -15,6 +15,4 @@ v1_router.include_router(datasets_router, prefix="/dataset", tags=["Dataset"])
 v1_router.include_router(
     conversation_router, prefix="/conversations", tags=["Conversations"]
 )
-v1_router.include_router(
-    workspaces_router, prefix="/workspace", tags=["Workspace"]
-)
+v1_router.include_router(workspaces_router, prefix="/workspace", tags=["Workspace"])

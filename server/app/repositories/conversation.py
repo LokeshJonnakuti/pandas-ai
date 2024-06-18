@@ -12,6 +12,7 @@ class ConversationRepository(BaseRepository[UserConversation]):
     """
     UserConversation repository provides all the database operations for the UserConversation model.
     """
+
     @Transactional(propagation=Propagation.REQUIRED)
     async def add_conversation_message(
         self,
