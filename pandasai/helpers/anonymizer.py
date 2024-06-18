@@ -2,12 +2,11 @@
 Helper class to anonymize a dataframe head by replacing the values of the columns
 that contain personal or sensitive information with random values.
 """
-
-import random
 import re
 import string
 
 import pandasai.pandas as pd
+import secrets
 
 
 class Anonymizer:
@@ -67,10 +66,10 @@ class Anonymizer:
             "protonmail.com",
             "zoho.com",
         ]
-        name_length = random.randint(6, 12)
-        domain = random.choice(domains)
+        name_length = secrets.SystemRandom().randint(6, 12)
+        domain = secrets.choice(domains)
         letters = string.ascii_lowercase + string.digits + "-_"
-        username = "".join(random.choice(letters) for _ in range(name_length))
+        username = "".join(secrets.choice(letters) for _ in range(name_length))
         return f"{username}@{domain}"
 
     @staticmethod
@@ -84,7 +83,7 @@ class Anonymizer:
         """
 
         country_code = original.split()[0] if original.startswith("+") else ""
-        number = "".join(random.choices("0123456789", k=10))
+        number = "".join(secrets.SystemRandom().choices("0123456789", k=10))
 
         return f"{country_code} {number}" if country_code else number
 
@@ -97,9 +96,9 @@ class Anonymizer:
 
         groups = []
         for _i in range(4):
-            group = "".join(random.choices("0123456789", k=4))
+            group = "".join(secrets.SystemRandom().choices("0123456789", k=4))
             groups.append(group)
-        separator = random.choice(["-", " "])
+        separator = secrets.choice(["-", " "])
         return separator.join(groups)
 
     # static method to anonymize a dataframe head
