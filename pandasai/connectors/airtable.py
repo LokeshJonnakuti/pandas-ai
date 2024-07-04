@@ -72,8 +72,8 @@ class AirtableConnector(BaseConnector):
         config = config.dict()
         url = f"{self._root_url}{config['base_id']}/{config['table']}"
         response = requests.head(
-            url=url, headers={"Authorization": f"Bearer {config['token']}"}
-        )
+            url=url, headers={"Authorization": f"Bearer {config['token']}"}, 
+        timeout=60)
         if response.status_code == 200:
             self.logger.log(
                 """
@@ -185,7 +185,7 @@ class AirtableConnector(BaseConnector):
             url=url,
             headers={"Authorization": f"Bearer {self.config.api_key}"},
             params=params,
-        )
+        timeout=60)
 
     def _fetch_data(self):
         """

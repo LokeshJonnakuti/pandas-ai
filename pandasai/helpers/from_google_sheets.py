@@ -25,7 +25,7 @@ def get_google_sheet(src) -> list:
         ) from e
 
     # The size of the Google sheet that can be read is limited
-    raw_html = requests.get(src).text
+    raw_html = requests.get(src, timeout=60).text
 
     soup = BeautifulSoup(raw_html, "html.parser")
     table = soup.find("tbody")
