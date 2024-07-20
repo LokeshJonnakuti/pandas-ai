@@ -23,7 +23,9 @@ class GenerateDFSchemaPrompt(BasePrompt):
             current_dir_path = Path(__file__).parent
 
             path_to_template = current_dir_path / "templates"
-            env = Environment(loader=FileSystemLoader(path_to_template), autoescape=True)
+            env = Environment(
+                loader=FileSystemLoader(path_to_template), autoescape=True
+            )
             self.prompt = env.get_template(self.template_path)
 
         self._resolved_prompt = None

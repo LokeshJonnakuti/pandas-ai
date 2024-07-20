@@ -97,13 +97,12 @@ class WorkspaceRepository(BaseRepository[Workspace]):
         )
         return result.unique().scalars().all()
 
-    async def get_users_by_workspace_id(self, workspace_id: str) -> List[WorkspaceUserResponse]:
+    async def get_users_by_workspace_id(
+        self, workspace_id: str
+    ) -> List[WorkspaceUserResponse]:
         result = await self.session.execute(
-            select(
-                User.id,
-                User.first_name,
-                User.last_name,
-                User.email
-            ).join(UserSpace).filter(UserSpace.workspace_id == workspace_id)
+            select(User.id, User.first_name, User.last_name, User.email)
+            .join(UserSpace)
+            .filter(UserSpace.workspace_id == workspace_id)
         )
         return result.all()
