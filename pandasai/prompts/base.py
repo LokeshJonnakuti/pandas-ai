@@ -24,13 +24,13 @@ class BasePrompt:
         self.props = kwargs
 
         if self.template:
-            env = Environment()
+            env = Environment(autoescape=True)
             self.prompt = env.from_string(self.template)
         elif self.template_path:
             # find path to template file
             current_dir_path = Path(__file__).parent
             path_to_template = os.path.join(current_dir_path, "templates")
-            env = Environment(loader=FileSystemLoader(path_to_template))
+            env = Environment(loader=FileSystemLoader(path_to_template), autoescape=True)
             self.prompt = env.get_template(self.template_path)
 
         self._resolved_prompt = None
