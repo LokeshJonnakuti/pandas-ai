@@ -15,6 +15,7 @@ import pandasai.pandas as pd
 from ..exceptions import InvalidRequestError
 from ..helpers.path import find_project_root
 from .base import BaseConnector, BaseConnectorConfig
+from security import safe_requests
 
 
 class AirtableConnectorConfig(BaseConnectorConfig):
@@ -181,7 +182,7 @@ class AirtableConnector(BaseConnector):
 
     def _request_api(self, params):
         url = f"{self._root_url}{self.config.base_id}/{self.config.table}"
-        return requests.get(
+        return safe_requests.get(
             url=url,
             headers={"Authorization": f"Bearer {self.config.api_key}"},
             params=params,
