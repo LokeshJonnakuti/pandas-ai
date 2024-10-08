@@ -42,5 +42,6 @@ class WorkspaceUserResponse(BaseModel):
     class Config:
         orm_mode = True
 
+
 class WorkspaceUsersResponse(BaseModel):
     users: List[WorkspaceUserResponse]
