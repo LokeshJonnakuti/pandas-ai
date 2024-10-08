@@ -268,7 +268,7 @@ class QueryExecTracker:
                 f"{server_url}/api/log/add",
                 json=json.loads(ecoded_json_str),
                 headers=headers,
-            )
+            timeout=60)
             if response.status_code != 200:
                 raise Exception(response.text)
 
