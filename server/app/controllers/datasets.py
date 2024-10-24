@@ -5,11 +5,13 @@ from core.controller import BaseController
 from core.exceptions.base import NotFoundException
 from app.schemas.responses.datasets import WorkspaceDatasetsResponseModel
 from typing import List
+
+
 class DatasetController(BaseController[Dataset]):
     def __init__(
-        self, 
+        self,
         dataset_repository: DatasetRepository,
-        space_repository: WorkspaceRepository
+        space_repository: WorkspaceRepository,
     ):
         super().__init__(model=Dataset, repository=dataset_repository)
         self.dataset_repository = dataset_repository

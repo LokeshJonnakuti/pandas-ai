@@ -38,7 +38,9 @@ class DatasetRepository(BaseRepository[Dataset]):
 
     async def get_all_by_workspace_id(self, workspace_id: UUID):
         result = await self.session.execute(
-            select(Dataset).join(DatasetSpace).where(DatasetSpace.workspace_id == workspace_id)
+            select(Dataset)
+            .join(DatasetSpace)
+            .where(DatasetSpace.workspace_id == workspace_id)
         )
         datasets = result.scalars().all()
         return datasets
