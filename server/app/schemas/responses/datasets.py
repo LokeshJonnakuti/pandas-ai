@@ -2,6 +2,7 @@ from pydantic import BaseModel, UUID4
 from typing import Optional, List
 from datetime import datetime
 
+
 class DatasetModel(BaseModel):
     id: UUID4
     name: str
@@ -17,6 +18,7 @@ class DatasetModel(BaseModel):
 
     class Config:
         orm_mode = True
+
 
 class WorkspaceDatasetsResponseModel(BaseModel):
     datasets: List[DatasetModel]
